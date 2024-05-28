@@ -21,9 +21,12 @@ function Dashboard() {
         </div>
 
         <section className="flex justify-between items-stretch gap-8 p-8">
-     <WidgetItem percent={40} heading="revenue" value={30000} amount={true} color="blue"/>
-     <WidgetItem percent={40} heading="revenue" value={30000} amount={true} color="blue"/>
-     <WidgetItem percent={40} heading="revenue" value={30000} amount={true} color="blue"/>
+          <WidgetItem percent={40} heading="revenue" value={30000} amount={true} color="blue" />
+          <WidgetItem percent={70} heading="revenue" value={30000} amount={true} color="yellow" />
+          <WidgetItem percent={95} heading="revenue" value={30000} amount={true} color="red" />
+        </section>
+
+
         </section>
       </main>
     </div>
@@ -37,17 +40,19 @@ interface WidgetProps {
   color: string,
   amount?: boolean
 }
-const WidgetItem = ({heading, value, percent, amount, color}: WidgetProps) => <article className="w-48 bg-white shadow-inner rounded p-2 flex justify-between items-stretch">
+const WidgetItem = ({ heading, value, percent, amount, color }: WidgetProps) => <article className="w-48 bg-white shadow-inner rounded p-2 flex justify-between items-stretch">
   <div className="">
     <p className="text-sm opacity-70">{heading}</p>
-    <h3 className="text-2xl">{amount ?  `$${value}` : value}</h3>
+    <h3 className="text-2xl">{amount ? `$${value}` : value}</h3>
     {
-      percent > 0 ? <span className="text-green-500 flex items-center text-xs"><HiTrendingUp/> +{percent}%</span>
-      : <span className="text-red-500"><HiTrendingDown/> {percent}%</span>
+      percent > 0 ? <span className="text-green-500 flex items-center text-xs"><HiTrendingUp /> +{percent}%</span>
+        : <span className="text-red-500"><HiTrendingDown /> {percent}%</span>
     }
   </div>
-  <div className="w-[4rem] rounded-full grid relative place-items-center">
-<span className={`text-${color}`}>{percent}%</span>
+  <div className="min-w-[4rem] rounded-full grid relative place-items-center " style={{background:`conic-gradient(${color} ${(percent/100)*360}deg, rgb(255,255,255) 0)`}}>
+    <div className="rounded-full w-[3.5rem] h-[3.5rem] grid place-items-center absolute bg-white">
+    <span className={`text-${color} relative`} style={{color:`${color}`}}>{percent}%</span>
+    </div>
   </div>
 </article>
 
