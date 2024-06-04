@@ -3,10 +3,14 @@ import Sidebar from "../components/Sidebar"
 import { FaRegBell } from "react-icons/fa"
 import { HiTrendingDown, HiTrendingUp } from "react-icons/hi"
 import BarChart from "../components/Charts"
+import { BiMaleFemale } from "react-icons/bi"
+import Table from '../components/DashboardTable'
+import data from '../assets/data.json'
 
 const avatarUrl = "https://img.freepik.com/premium-photo/memoji-happy-man-white-background-emoji_826801-6838.jpg?size=626&ext=jpg"
 
 function Dashboard() {
+  console.log(data.transaction)
   return (
     <div className="grid grid-cols-5 h-[100vh] bg-[#f7f7f7]">
 
@@ -37,13 +41,25 @@ function Dashboard() {
           <div className="bg-white rounded-lg w-full max-w-64 pb-8">
             <h2 className="text-xl text-center mt-6 mb-8 ">Inventory</h2>
             <div className="pl-2 overflow-y-auto">
-                  {CategoryItemArr.map((item, index) => (
+                  {data.categories.map((item, index) => (
                     <CategoryItem key={index} color={item.color} heading={item.heading} value={item.value} />
                   ))}
             </div>
           </div>
 
         </section>
+
+        <section className="flex gap-8 pr-8 pb-8 h-[30rem]">
+              <div className="bg-white shadow-lg rounded-lg w-full max-w-[20rem] p-4 relative">
+                <h2 className="text-center mt-6 mb-8 ">Gender Chart</h2>
+                {/* charts donut */}
+                <p className="text-lg grid place-items-center"><BiMaleFemale/></p>
+              </div>
+
+              {/* Table */}
+              <Table data={data.transaction}/>
+        </section>
+
       </main>
     </div>
   )
