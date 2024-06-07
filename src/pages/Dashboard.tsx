@@ -4,15 +4,14 @@ import { FaRegBell } from "react-icons/fa"
 import { HiTrendingDown, HiTrendingUp } from "react-icons/hi"
 import BarChart from "../components/Charts"
 import { BiMaleFemale } from "react-icons/bi"
-import Table from '../components/DashboardTable'
 import data from '../assets/data.json'
+import DashboardTable from "../components/DashboardTable"
 
 const avatarUrl = "https://img.freepik.com/premium-photo/memoji-happy-man-white-background-emoji_826801-6838.jpg?size=626&ext=jpg"
 
 function Dashboard() {
-  console.log(data.transaction)
   return (
-    <div className="grid grid-cols-5 h-[100vh] bg-[#f7f7f7]">
+    <div className="grid grid-cols-5 gap-8 h-[100vh] bg-[#f7f7f7]">
 
       {/* Sidebar */}
       <Sidebar />
@@ -41,23 +40,25 @@ function Dashboard() {
           <div className="bg-white rounded-lg w-full max-w-64 pb-8">
             <h2 className="text-xl text-center mt-6 mb-8 ">Inventory</h2>
             <div className="pl-2 overflow-y-auto">
-                  {data.categories.map((item, index) => (
-                    <CategoryItem key={index} color={item.color} heading={item.heading} value={item.value} />
-                  ))}
+              {data.categories.map((item, index) => (
+                <CategoryItem key={index} color={item.color} heading={item.heading} value={item.value} />
+              ))}
             </div>
           </div>
 
         </section>
 
-        <section className="flex gap-8 pr-8 pb-8 h-[30rem]">
-              <div className="bg-white shadow-lg rounded-lg w-full max-w-[20rem] p-4 relative">
-                <h2 className="text-center mt-6 mb-8 ">Gender Chart</h2>
-                {/* charts donut */}
-                <p className="text-lg grid place-items-center"><BiMaleFemale/></p>
-              </div>
+        <section className="flex gap-8 pr-8 pb-8 h-[25rem]">
+          <div className="bg-white shadow-lg rounded-lg w-full max-w-[20rem] p-4 relative">
+            <h2 className="text-center mt-6 mb-8 ">Gender Chart</h2>
+            {/* charts donut */}
+            <p className="text-lg absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"><BiMaleFemale /></p>
+          </div>
 
-              {/* Table */}
-              <Table data={data.transaction}/>
+          {/* Table */}
+          <div className="w-full bg-white rounded-lg">
+            <DashboardTable data={data.transaction} />
+          </div>
         </section>
 
       </main>
@@ -89,17 +90,17 @@ const WidgetItem = ({ heading, value, percent, amount, color }: WidgetProps) => 
   </div>
 </article>
 
-interface CategoryItemProps{
+interface CategoryItemProps {
   color: string,
   heading: string,
   value: number
 }
 
-const CategoryItem = ({color, heading, value}: CategoryItemProps) => (
+const CategoryItem = ({ color, heading, value }: CategoryItemProps) => (
   <div className="w-full flex justify-between items-center gap-1 p-4">
     <h5 className="font-light tracking-wide">{heading}</h5>
     <div className="ml-auto w-24 rounded-2xl h-2 bg-[rgb(217,217,217)]">
-      <div style={{backgroundColor: `${color}`, width:`${value}%`}} className="h-full rounded-2xl"></div>
+      <div style={{ backgroundColor: `${color}`, width: `${value}%` }} className="h-full rounded-2xl"></div>
     </div>
     <span className="font-bold text-sm">{value}%</span>
   </div>
