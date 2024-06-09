@@ -35,7 +35,7 @@ function Dashboard() {
         <section className=" flex gap-8 pr-8 pb-8">
           <div className="bg-white rounded-lg w-full py-4 px-8">
             <h2 className="text-xl text-center mt-4 mb-8 ml-1">Revenue and Transcation</h2>
-            {/* <BarChart /> */}
+            {/* <BarChart /> */}  
           </div>
           <div className="bg-white rounded-lg w-full max-w-64 pb-8">
             <h2 className="text-xl text-center mt-6 mb-8 ">Inventory</h2>

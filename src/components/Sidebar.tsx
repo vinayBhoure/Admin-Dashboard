@@ -1,4 +1,4 @@
-import { Link, Location, useLocation } from "react-router-dom";
+import { Link,  useLocation } from "react-router-dom";
 import { RiDashboardFill, RiShoppingBag3Fill } from "react-icons/ri";
 import { AiFillFileText } from "react-icons/ai";
 import { IoIosPeople } from "react-icons/io";
@@ -53,7 +53,7 @@ function Sidebar() {
 
     const location = useLocation();
     return (
-        <aside className="w-[100%] bg-white p-4 z-10 overflow-y-auto">
+        <aside className="w-[100%] bg-white p-4 z-10 overflow-y-auto  ">
 
             <h2>Logo...</h2>
             <div className="my-8 mx-4">
