@@ -7,6 +7,11 @@ interface FormDataType {
   image: string;
 }
 
+interface ProductFormProps {
+  data?: FormDataType,
+  setData?: React.Dispatch<React.SetStateAction<FormDataType>>,
+}
+
 const nullData = {
   name: '',
   price: 0,
@@ -15,7 +20,7 @@ const nullData = {
 }
 
 
-function ProductForm({ data = nullData  }: { data: FormDataType }) {
+function ProductForm({ data = nullData, setData  }: ProductFormProps) {
 
   const [formData, setFormData] = useState<FormDataType>({
     name: data.name,
@@ -32,26 +37,22 @@ function ProductForm({ data = nullData  }: { data: FormDataType }) {
   }
 
   const changeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const file = e.target.files?.[0]
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0]
       const reader = new FileReader()
-
-      if (file) {
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          if (typeof reader.result === 'string') {
-            setFormData({
-              ...formData,
-              image: reader.result
-            })
-          }
-        }
+      reader.onloadend = () => {
+        setFormData(prevState => ({
+          ...prevState,
+          image: reader.result as string
+        }));
       }
+      reader.readAsDataURL(file)
     }
   }
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setData && setData(formData)
     console.log(formData)
   }
 
@@ -96,7 +97,7 @@ function ProductForm({ data = nullData  }: { data: FormDataType }) {
           className="absolute left-0 top-[-1.5rem]">
           Product image
         </label>
-        <input type="file" id="image" placeholder="" value={formData.image} onChange={changeImageHandler} 
+        <input type="file" id="image" onChange={changeImageHandler} 
           className="rounded w-full p-4 border border-[#0d0d0d] outline-none"  
         />
       </div>
