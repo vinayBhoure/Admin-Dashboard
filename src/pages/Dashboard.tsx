@@ -2,7 +2,7 @@ import { BsSearch } from "react-icons/bs"
 import Sidebar from "../components/Sidebar"
 import { FaRegBell } from "react-icons/fa"
 import { HiTrendingDown, HiTrendingUp } from "react-icons/hi"
-import BarChart from "../components/Charts"
+import BarChart, { DoughnutChart } from "../components/Charts"
 import { BiMaleFemale } from "react-icons/bi"
 import data from '../assets/data.json'
 import DashboardTable from "../components/DashboardTable"
@@ -35,7 +35,15 @@ function Dashboard() {
         <section className=" flex gap-8 pr-8 pb-8">
           <div className="bg-white rounded-lg w-full py-4 px-8">
             <h2 className="text-xl text-center mt-4 mb-8 ml-1">Revenue and Transcation</h2>
-            {/* <BarChart /> */}  
+            {/* <BarChart /> */}
+            <BarChart
+              data_2={[300, 144, 433, 655, 237, 755, 190]}
+              data_1={[200, 444, 343, 556, 778, 455, 990]}
+              title_1="Revenue"
+              title_2="Transaction"
+              bgColor_1="rgb(0,115,255)"
+              bgColor_2="rgba(53,162,235,0.8)" />
+
           </div>
           <div className="bg-white rounded-lg w-full max-w-64 pb-8">
             <h2 className="text-xl text-center mt-6 mb-8 ">Inventory</h2>
@@ -53,6 +61,12 @@ function Dashboard() {
             <h2 className="text-center mt-6 mb-8 ">Gender Chart</h2>
             {/* charts donut */}
             <p className="text-lg absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"><BiMaleFemale /></p>
+            <DoughnutChart
+              labels={["Female", "Male"]}
+              data={[12, 19]}
+              backgroundColor={["hsl(340,82%,56%)", "rgba(53,162,235,0.8)"]}
+              cutout={90}
+            />
           </div>
 
           {/* Table */}

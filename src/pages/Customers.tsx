@@ -94,13 +94,13 @@ function Customers() {
   const [data, setData] = useState<DataType[]>(arr);
   const Table = useCallback(TableHOC<DataType>(columns, data, "customer-box", "Customers", true), []);
   return (
-    <div className="grid grid-cols-5 gap-8 h-[100vh] bg-slate-200 p-1">
+    <div className="grid grid-cols-5 gap-8 min-h-[100vh] bg-[#f7f7f7] pt-2">
 
       {/* Sidebar */}
       <Sidebar />
 
       {/* /Main */}
-      <main className="col-span-4">
+      <main className="col-span-4 bg-white px-4">
         {Table()}
       </main>
     </div>

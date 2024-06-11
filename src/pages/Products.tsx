@@ -98,17 +98,17 @@ const arr: DataType[] = [
 
 const Products = () => {
 
-  const [data, setData] = useState<DataType[]>(arr)
+  const [data] = useState<DataType[]>(arr)
   const Table = useCallback(TableHOC<DataType>(columns, data, "product-box", "All Product", true), []);
 
   return (
-    <div className="grid grid-cols-5 gap-8 h-[100vh] bg-slate-200">
+    <div className="grid grid-cols-5 gap-8 min-h-[100vh] bg-[#f7f7f7] pt-2">
 
       {/* Sidebar */}
       <Sidebar />
 
       {/* /Main */}
-      <main className="col-span-4 ">
+      <main className="col-span-4 px-4 bg-white">
         {Table()}
         <Link to="/admin/product/new" className="fixed right-8 top-8 h-10 w-10 flex justify-center items-center rounded-[50%] bg-red-600 text-white hover:opacity-80" > <FaPlus /> </Link>
       </main>

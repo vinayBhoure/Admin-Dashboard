@@ -29,17 +29,17 @@ const Dashboard = [{
 const Charts = [{
     title: "Bar",
     icon: <FaChartBar />,
-    path: "/admin/chart/bar"
+    path: "/admin/charts/bar"
 },
     {
         title: "Line",
         icon: <FaChartLine />,
-        path: "/admin/chart/line"
+        path: "/admin/charts/line"
     } ,
     {
         title: "Pie",
         icon: <FaChartPie/>,
-        path: "/admin/chart/pie"
+        path: "/admin/charts/pie"
     }
 ]
 
